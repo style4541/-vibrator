@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vibration Prank</title>
+  <script>
+    const pattern = [1000, 1000]; // vibrate 1s, pause 1s
+    const duration = 300000; // 5 minutes
+    let start;
+
+    window.onload = () => {
+      if (navigator.vibrate) {
+        start = Date.now();
+        const interval = setInterval(() => {
+          if (Date.now() - start >= duration) {
+            navigator.vibrate(0); // stop
+            clearInterval(interval);
+          } else {
+            navigator.vibrate(pattern);
+          }
+        }, pattern.reduce((a, b) => a + b)); // 2 sec cycle
+      }
+    };
+  </script>
+</head>
+<body style="text-align:center; font-size:2em; margin-top:40%;">
+  😈 Buzzing for 5 minutes...
+</body>
+</html>
